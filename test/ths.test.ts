@@ -7,12 +7,12 @@
 describe('thsBot test', () => {
   it('update', async () => {
     // const urls = [
-    //   'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1ee8d91c-ee26-458f-9913-fd0d4eb585a8',
-    //   'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0ecd18fa-d56c-4938-a984-4d91bdc06e38'
+    //   'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1ee8d91c-ee26-458f-9913-fd0d4eb585a7',
+    //   'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0ecd18fa-d56c-4938-a984-4d91bdc06e37'
     // ];
     // const browser = await firefox.launch({ headless: false });
     // const ctx = await browser.newContext();
-    // const ths = new thsBot(ctx, "mo_241927636", "aa0232204033", urls);
+    // const ths = new thsBot(ctx, "mo_241927636", "aa023kdiew2204afwe033", urls);
     // await ths.update(['688148', '300745']);
   });
 });
