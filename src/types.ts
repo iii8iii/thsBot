@@ -1,4 +1,4 @@
 export interface zxItem {
-    code: string;
-    marketid: number;
+  code: string;
+  marketid: number;
 }
