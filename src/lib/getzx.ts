@@ -1,7 +1,7 @@
 import { Page } from 'playwright-firefox';
-import { zxdata } from '../types';
+import { zxItem } from '../types';
 
-export const getzx = async (page: Page): Promise<zxdata[]> => {
+export const getzx = async (page: Page): Promise<zxItem[]> => {
   try {
     const getzxjson = await page.evaluate(() => {
       return fetch(

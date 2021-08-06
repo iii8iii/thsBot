@@ -7,7 +7,7 @@ import { getzx } from './lib/getzx';
 import { addzx } from './lib/addzx';
 import { delzx } from './lib/delzx';
 
-export class ths {
+export class thsBot {
   private ctx: BrowserContext;
   private page: Page | undefined;
   private isLogining: boolean;
@@ -15,12 +15,14 @@ export class ths {
   public id: string;
   private password: string;
   private zx: zxItem[] = [];
-  constructor(ctx: BrowserContext, id: string, password: string) {
+  private botUrls: string[];
+  constructor(ctx: BrowserContext, id: string, password: string, botUrls: string[]) {
     this.isLogining = false;
     this.logined = false;
     this.id = id;
     this.password = password;
     this.ctx = ctx;
+    this.botUrls = botUrls;
   }
 
   private async ready() {
@@ -126,9 +128,10 @@ export class ths {
       }
 
       this.zx = await getzx(this.page as Page);
-      sendMsg(`Ths updated\nZX:${this.zx.length}`);
+      sendMsg(`Ths updated\nZX:${this.zx.length}`, this.botUrls);
     } catch (err) {
       console.log('ERROR OCURRED IN UPDATE', err);
     }
   }
 }
+

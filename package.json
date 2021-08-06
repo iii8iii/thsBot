@@ -30,7 +30,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "thsbot",
+  "name": "@iii8iii/thsbot",
   "author": "iii8iii",
   "module": "dist/thsbot.esm.js",
   "size-limit": [
@@ -54,7 +54,10 @@
   },
   "dependencies": {
     "@iii8iii/wechatbot": "^0.2.0",
+    "@types/fs-extra": "^9.0.12",
     "@types/lodash": "^4.14.172",
+    "fs-extra": "^9.1.0",
+    "jimp": "^0.16.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21"
   }
