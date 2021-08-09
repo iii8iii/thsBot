@@ -1,5 +1,5 @@
 import { Page, errors } from 'playwright-firefox';
-import { sliderHelper } from './utils/sliderHelper';
+import { getDistance } from './utils/getDistance';
 
 const fillUserInfo = async (page: Page, id: string, psw: string) => {
   try {
@@ -42,7 +42,7 @@ const getSliderDistance = async (page: Page): Promise<number> => {
       slider.width &&
       slider.top
     ) {
-      const distance = await sliderHelper({ bg, slider, y: slider.top });
+      const distance = await getDistance(bg, slider);
       return distance;
     } else {
       return await getSliderDistance(page);
