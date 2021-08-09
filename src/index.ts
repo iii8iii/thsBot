@@ -1,4 +1,4 @@
-import { BrowserContext, Page } from 'playwright-firefox';
+import { BrowserContext, firefox, Page } from 'playwright-firefox';
 import { sendMsg } from '@iii8iii/wechatbot';
 import { difference } from 'lodash';
 import { zxItem } from './types';
@@ -35,8 +35,8 @@ export class thsBot {
     this.page = this.page
       ? this.page
       : ps.length
-      ? ps[0]
-      : await this.ctx.newPage();
+        ? ps[0]
+        : await this.ctx.newPage();
     if (!this.logined) {
       if (!this.isLogining) {
         await this.login();
@@ -70,7 +70,7 @@ export class thsBot {
         : await getzx(this.page as Page);
       this.zx = zxObjArr;
       let zx: string[] = [];
-      zxObjArr.forEach((item: { code: string }) => {
+      zxObjArr.forEach((item: { code: string; }) => {
         zx.push(item.code);
       });
       return zx;
@@ -139,3 +139,4 @@ export class thsBot {
     }
   }
 }
+
