@@ -56,7 +56,7 @@
     "typescript": "^3.9.10"
   },
   "dependencies": {
-    "@iii8iii/wechatbot": "^0.2.0",
+    "@iii8iii/wechatbot": "^1.0.0",
     "@types/lodash": "^4.14.172",
     "jimp": "^0.16.1",
     "lodash": "^4.17.21",

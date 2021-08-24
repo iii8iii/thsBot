@@ -1,5 +1,5 @@
 import { BrowserContext, Page } from 'playwright-firefox';
-import { sendMsg } from '@iii8iii/wechatbot';
+import { WechatBot } from '@iii8iii/wechatbot';
 import { difference } from 'lodash';
 import { zxItem } from './types';
 import { login } from './lib/login';
@@ -15,19 +15,19 @@ export class thsBot {
   public id: string;
   private password: string;
   private zx: zxItem[] = [];
-  private botUrls: string[];
+  private bot?: WechatBot;
   constructor(
     ctx: BrowserContext,
     id: string,
     password: string,
-    botUrls: string[]
+    bot?: WechatBot
   ) {
     this.isLogining = false;
     this.logined = false;
     this.id = id;
     this.password = password;
     this.ctx = ctx;
-    this.botUrls = botUrls;
+    this.bot = bot;
   }
 
   private async ready() {
@@ -133,7 +133,7 @@ export class thsBot {
       }
 
       this.zx = await getzx(this.page as Page);
-      sendMsg(`Ths updated\nZX:${this.zx.length}`, this.botUrls);
+      this.bot?.sendMsg(`Ths updated\nZX:${this.zx.length}`);
     } catch (err) {
       console.log('ERROR OCURRED IN UPDATE', err);
     }
