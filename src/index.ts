@@ -35,8 +35,8 @@ export class thsBot {
     this.page = this.page
       ? this.page
       : ps.length
-      ? ps[0]
-      : await this.ctx.newPage();
+        ? ps[0]
+        : await this.ctx.newPage();
     if (!this.logined) {
       if (!this.isLogining) {
         await this.login();
@@ -70,7 +70,7 @@ export class thsBot {
         : await getzx(this.page as Page);
       this.zx = zxObjArr;
       let zx: string[] = [];
-      zxObjArr.forEach((item: { code: string }) => {
+      zxObjArr.forEach((item: { code: string; }) => {
         zx.push(item.code);
       });
       return zx;
@@ -112,7 +112,7 @@ export class thsBot {
     }
   }
 
-  async update(stocks: string[]): Promise<void> {
+  async update(stocks: string[], Delimiter?: string): Promise<void> {
     try {
       if (this.isLogining) {
         return;
@@ -120,7 +120,14 @@ export class thsBot {
 
       await this.ready();
 
-      const zx = await this.getzxCodes();
+      let zx = await this.getzxCodes();
+      if (Delimiter) {
+        const i = zx.findIndex((v => v === Delimiter));
+        if (i >= 0) {
+          zx = zx.slice(i + 1);
+        }
+      }
+
       const toAdd = difference(stocks, zx);
       const toDel = difference(zx, stocks);
 
