@@ -132,7 +132,7 @@ export class thsBot {
 
       const toAdd = difference(stocks, zx);
       const toDel = difference(zx, stocks);
-      console.log('zx:', zx, 'ta:', toAdd, 'td:', toDel);
+      console.log('codes:', stocks, 'ta:', toAdd, 'td:', toDel);
 
       if (toDel.length) {
         await this.delzx(toDel);
