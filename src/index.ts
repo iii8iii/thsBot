@@ -127,14 +127,14 @@ export class thsBot {
       const toAdd = difference(stocks, zx);
       let toDel = difference(zx, stocks);
 
-      if (Delimiter) {
-        const i = zx.findIndex((v => v === Delimiter));
-        console.log('i:', i);
+      // if (Delimiter) {
+      //   const i = zx.findIndex((v => v === Delimiter));
+      //   console.log('i:', i);
 
-        if (i >= 0) {
-          toDel = difference(toDel, zx.slice(0, i + 1));
-        }
-      }
+      //   if (i >= 0) {
+      //     toDel = difference(toDel, zx.slice(0, i + 1));
+      //   }
+      // }
 
       console.log('xxx:', stocks, 'ta:', toAdd, 'td:', toDel, 'de:', Delimiter);
 
@@ -146,7 +146,11 @@ export class thsBot {
         await this.addzx(toAdd);
       }
 
+      console.log('xxx2:', stocks, 'ta:', toAdd, 'td:', toDel, 'de:', Delimiter);
+
       this.zx = await getzx(this.page as Page);
+      console.log('zx after:', zx);
+
       this.bot?.sendMsg(`Ths updated\nZX:${this.zx.length}`);
     } catch (err) {
       console.log('ERROR OCURRED IN UPDATE', err);
