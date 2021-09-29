@@ -28,7 +28,6 @@ export class thsBot {
     this.password = password;
     this.ctx = ctx;
     this.bot = bot;
-    this.login();
   }
 
   private async ready() {
@@ -43,12 +42,12 @@ export class thsBot {
         await this.login();
       }
     }
-    const ready = new Promise<void>(resolve => {
+    const toBeReady = new Promise<void>(resolve => {
       if (this.logined) {
         resolve();
       }
     });
-    await ready;
+    await toBeReady;
     // sendMsg('ths ready');
   }
 
@@ -60,6 +59,7 @@ export class thsBot {
       // sendMsg('ths login');
       await this.page?.goto('http://t.10jqka.com.cn');
     } catch (error) {
+      this.isLogining = false;
       console.log('ERROR OCCURED IN THS LOGIN');
     }
   }
@@ -70,11 +70,11 @@ export class thsBot {
         ? this.zx
         : await getzx(this.page as Page);
       this.zx = zxObjArr;
-      let zx: string[] = [];
+      let zxCodes: string[] = [];
       zxObjArr.forEach((item: { code: string; }) => {
-        zx.push(item.code);
+        zxCodes.push(item.code);
       });
-      return zx;
+      return zxCodes;
     } catch (error) {
       console.log('ERROR OCCURED IN THS GETZX');
       return [];
@@ -129,12 +129,14 @@ export class thsBot {
 
       if (Delimiter) {
         const i = zx.findIndex((v => v === Delimiter));
+        console.log('i:', i);
+
         if (i >= 0) {
           toDel = difference(toDel, zx.slice(0, i + 1));
         }
       }
 
-      console.log('codes:', stocks, 'ta:', toAdd, 'td:', toDel);
+      console.log('xxx:', stocks, 'ta:', toAdd, 'td:', toDel, 'de:', Delimiter);
 
       if (toDel.length) {
         await this.delzx(toDel);
