@@ -28,6 +28,7 @@ export class thsBot {
     this.password = password;
     this.ctx = ctx;
     this.bot = bot;
+    this.login();
   }
 
   private async ready() {
