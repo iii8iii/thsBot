@@ -120,18 +120,19 @@ export class thsBot {
 
       await this.ready();
 
-      let zx = await this.getzxCodes();
+      const zx = await this.getzxCodes();
       console.log('zx', zx);
+
+      const toAdd = difference(stocks, zx);
+      let toDel = difference(zx, stocks);
 
       if (Delimiter) {
         const i = zx.findIndex((v => v === Delimiter));
         if (i >= 0) {
-          zx = zx.slice(i + 1);
+          toDel = difference(toDel, zx.slice(0, i + 1));
         }
       }
 
-      const toAdd = difference(stocks, zx);
-      const toDel = difference(zx, stocks);
       console.log('codes:', stocks, 'ta:', toAdd, 'td:', toDel);
 
       if (toDel.length) {
