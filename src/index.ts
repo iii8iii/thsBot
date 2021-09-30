@@ -74,7 +74,6 @@ export class thsBot {
       zxObjArr.forEach((item: { code: string; }) => {
         zxCodes.push(item.code);
       });
-      console.log('this.zx:', this.zx.length, 'zxCodes:', zxCodes);
 
       return zxCodes;
     } catch (error) {
@@ -134,7 +133,6 @@ export class thsBot {
         }
       }
 
-      console.log('toDel:', toDel);
 
       if (toDel.length) {
         await this.delzx(toDel);
