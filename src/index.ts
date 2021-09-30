@@ -68,12 +68,14 @@ export class thsBot {
     try {
       const zxObjArr: zxItem[] = this.zx.length
         ? this.zx
-        : await getzx(this.page as Page);
+        : (await getzx(this.page as Page));
       this.zx = zxObjArr;
       let zxCodes: string[] = [];
       zxObjArr.forEach((item: { code: string; }) => {
         zxCodes.push(item.code);
       });
+      console.log('this.zx:', this.zx.length, 'zxCodes:', zxCodes);
+
       return zxCodes;
     } catch (error) {
       console.log('ERROR OCCURED IN THS GETZX');
@@ -132,6 +134,7 @@ export class thsBot {
         }
       }
 
+      console.log('toDel:', toDel);
 
       if (toDel.length) {
         await this.delzx(toDel);
